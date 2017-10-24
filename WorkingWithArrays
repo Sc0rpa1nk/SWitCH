@@ -1,0 +1,87 @@
+package mediaMatriz;
+
+public class MediaMatriz {
+
+	public static int[][] MatrizMediax4(int[][] mtrx) {
+		int[][] filtro;
+		filtro = MediaMatriz.clonarMatriz(mtrx);
+		for (int i = 1; i < mtrx.length - 1; i++) {
+			for (int j = 1; j < mtrx[i].length - 1; j++) {
+				filtro[i][j] = ((mtrx[i + 1][j] + mtrx[i - 1][j] + mtrx[i][j + 1] + mtrx[i][j - 1]) / 4);
+			}
+		}
+
+		return filtro;
+	}
+
+	public static int[][] MatrizMediax8(int[][] mtrx) {
+		int[][] filtro;
+		filtro = MediaMatriz.clonarMatriz(mtrx);
+		for (int i = 1; i < mtrx.length - 1; i++) {
+			for (int j = 1; j < mtrx[i].length - 1; j++) {
+				filtro[i][j] = ((mtrx[i + 1][j - 1] + mtrx[i - 1][j + 1] + mtrx[i + 1][j + 1] + mtrx[i - 1][j - 1]
+						+ mtrx[i + 1][j] + mtrx[i - 1][j] + mtrx[i][j + 1] + mtrx[i][j - 1]) / 8);
+			}
+		}
+
+		return filtro;
+	}
+
+	public static int[][] MatrizMediax9(int[][] mtrx) {
+		int[][] filtro;
+		filtro = MediaMatriz.clonarMatriz(mtrx);
+		for (int i = 1; i < mtrx.length - 1; i++) {
+			for (int j = 1; j < mtrx[i].length - 1; j++) {
+				filtro[i][j] = ((mtrx[i][j] + mtrx[i + 1][j - 1] + mtrx[i - 1][j + 1] + mtrx[i + 1][j + 1]
+						+ mtrx[i - 1][j - 1] + mtrx[i + 1][j] + mtrx[i - 1][j] + mtrx[i][j + 1] + mtrx[i][j - 1]) / 9);
+			}
+		}
+
+		return filtro;
+	}
+
+	public static int SomaMatrizElemementos5x5(int[][] mtrx) {
+		int resultado;
+		resultado = mtrx[0][0] + mtrx[0][mtrx[0].length - 1] + mtrx[mtrx.length - 1][0]
+				+ mtrx[mtrx.length - 1][mtrx[0].length - 1] + mtrx[mtrx.length / 2][mtrx.length / 2];
+		return resultado;
+	}
+	
+	public static int ContarCaracteres (char [][] mtrx , char c) {
+		int counter = 0;
+		for (int i = 0 ; i < mtrx.length ; i++) {
+			for (int j = 0 ; j < mtrx[i].length ; j++) {   
+				if( mtrx[j][i] == c) {
+					counter = counter +1;
+				}
+			}
+		}
+		return counter;
+	}
+	
+	public static int[] ContarCaracteresXadrez (char [][] mtrx , char b, char p, char l) {
+		int brancas = 0;
+		int pretas = 0;
+		int livres = 0;
+		brancas = MediaMatriz.ContarCaracteres(mtrx, b);
+		pretas = MediaMatriz.ContarCaracteres(mtrx, p);
+		livres = MediaMatriz.ContarCaracteres(mtrx, l);
+		int [] contagem = new int [3];
+		
+				contagem[0] = brancas;
+				contagem[1] = pretas;
+				contagem[2] = livres;
+				
+		return contagem;
+	}
+
+	public static int[][] clonarMatriz(int[][] original) {
+		int[][] resultado = new int[original[0].length][original.length];
+		for (int i = 0; i < original.length; i++) {
+			for (int j = 0; j < original[i].length; j++) {
+				resultado[j][i] = original[j][i];
+			}
+		}
+		return resultado;
+	}
+}
